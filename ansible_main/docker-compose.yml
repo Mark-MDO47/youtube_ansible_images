@@ -3,11 +3,13 @@ version: '3'
 services:
   ansible:
     build:
-      ./ansible
+      context: ./ansible
+      args:
+        - USER
+    image:
+      mdoansible:mdo
     volumes:
-      - ~/Documents/Automation:/home/ansible/Automation
-      - ~/.ssh:/home/ansible/.ssh
-      - ~/.gitconfig:/home/ansible/.gitconfig
+      - /d/VirtualBox/Ubuntu/SharedFolder:/home/mdo
     stdin_open: true
     tty: true
     command: tail -f /dev/null

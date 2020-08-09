@@ -1,15 +1,14 @@
-FROM centos:7 as ansible_runner
+FROM ubuntu:18.04 as ansible_runner
 ENV PS1 '$(whoami):$(pwd)\\$ '
-ARG USER=ansible
-ARG PASS=ansible
-ARG UID=1000
-ARG GID=1000
-RUN yum update -y
-COPY requirements-yum.txt /tmp/requirements-yum.txt
-RUN yum install -y $(strings -1 /tmp/requirements-yum.txt | tr '\n' ' ')
-COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install --upgrade -r /tmp/requirements.txt
-RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PASS}" | \
-      chpasswd
-USER ${UID}:${GID}
-WORKDIR /home/${USER}
+ARG MYUSER=ansible
+ARG MYPASS=ansible
+ARG MYUID=1000
+ARG MYGID=1000
+RUN apt-get update --yes
+RUN apt-get upgrade --yes
+RUN echo "2x85xYxYx" | tr "x" "\n" | apt install --yes apt-transport-https ca-certificates curl software-properties-common
+RUN apt-add-repository --yes --update ppa:ansible/ansible
+RUN apt-get install ansible --yes
+RUN apt-get install python --yes
+RUN addgroup --group ansible --gid ${MYGID}
+RUN echo "${MYPASS}nEwLiNe${MYPASS}nEwLiNenEwLiNenEwLiNenEwLiNenEwLiNenEwLiNeYnEwLiNe" | sed "s/nEwLiNe/\n/g" | adduser --home /home/${MYUSER} --shell /bin/bash --uid ${MYUID} --gid ${MYGID} ${MYUSER}
