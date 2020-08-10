@@ -12,3 +12,5 @@ RUN apt-get install ansible --yes
 RUN apt-get install python --yes
 RUN addgroup --group ansible --gid ${MYGID}
 RUN echo "${MYPASS}nEwLiNe${MYPASS}nEwLiNenEwLiNenEwLiNenEwLiNenEwLiNenEwLiNeYnEwLiNe" | sed "s/nEwLiNe/\n/g" | adduser --home /home/${MYUSER} --shell /bin/bash --uid ${MYUID} --gid ${MYGID} ${MYUSER}
+USER ${MYUID}:${MYGID}
+WORKDIR /home/${MYUSER}
