@@ -1,7 +1,7 @@
 FROM ubuntu:18.04 as ansible_runner
 ENV PS1 '$(whoami):$(pwd)\\$ '
-ARG MYUSER=ansible
-ARG MYPASS=ansible
+ARG MYUSER=mdo
+ARG MYPASS=mdo
 ARG MYUID=1000
 ARG MYGID=1000
 RUN apt-get update --yes
