@@ -18,4 +18,4 @@ docker images
 docker ps
 
 ## Attach to existed container
-docker exec -it CONTANTER_ID bash
+docker exec -it CONTAINER_ID bash
