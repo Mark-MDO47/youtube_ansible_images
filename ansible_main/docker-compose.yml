@@ -9,7 +9,7 @@ services:
     image:
       mdoansible:mdo
     volumes:
-      - /d/VirtualBox/Ubuntu/SharedFolder:/home/ansible
+      - /d/VirtualBox/Ubuntu/SharedFolder:/home/mdo
     stdin_open: true
     tty: true
     command: tail -f /dev/null
